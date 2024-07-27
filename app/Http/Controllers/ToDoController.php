@@ -9,7 +9,7 @@ class TodoController extends Controller
 {
     public function index()
     {
-        return Todo::all();
+        return ToDo::all();
     }
 
     public function store(Request $request)
@@ -19,16 +19,16 @@ class TodoController extends Controller
             'age' => 'required|integer',
         ]);
 
-        $todo = Todo::create($request->all());
+        $todo = ToDo::create($request->all());
         return response()->json($todo, 201);
     }
 
-    public function show(Todo $todo)
+    public function show(ToDo $todo)
     {
         return $todo;
     }
 
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, ToDo $todo)
     {
         $request->validate([
             'name' => 'sometimes|required|string|max:255',
@@ -39,7 +39,7 @@ class TodoController extends Controller
         return response()->json($todo, 200);
     }
 
-    public function destroy(Todo $todo)
+    public function destroy(ToDo $todo)
     {
         $todo->delete();
         return response()->json(null, 204);
